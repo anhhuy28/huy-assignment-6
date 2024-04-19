@@ -45,13 +45,13 @@ public class FileService {
 		return bestMonth;
 	}
 	
-	public void printYTS(String fileName) {
+	public void printYTS(String fileName, String modelName) {
 		List<SalesData> salesDataList = readSalesData(fileName);
 	    Map<YearMonth, List<SalesData>> modelYearlySales = salesDataList.stream()
 	            .collect(Collectors.groupingBy(salesData ->
 	                    YearMonth.parse(salesData.getDate())));
 
-	    System.out.println(fileName + " Yearly Sales Report\n-------------------");
+	    System.out.println(modelName + " Yearly Sales Report\n-------------------");
 
 	    Map<Integer, Integer> yearlyTotalSales = new HashMap<>();
 	    modelYearlySales.forEach((yearMonth, salesDataList1) -> {

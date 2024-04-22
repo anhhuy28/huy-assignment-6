@@ -1,21 +1,23 @@
 package com.coderscampus;
 
+import java.time.LocalDate;
+
 public class SalesData {
 
-	private String date;
+	private LocalDate date;
 	private Integer sales;
 	
-	public SalesData(String date, Integer sales) {
+	public SalesData(LocalDate date, Integer sales) {
 		
 		this.date = date;
 		this.sales = sales;
 	}
 
-	public String getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 

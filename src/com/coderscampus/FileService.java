@@ -59,20 +59,17 @@ public class FileService {
 	    return bestMonth;
 	}
 	
-	public void printYTS(List<SalesData> salesDataList, String modelName) {
-	    Map<LocalDate, List<SalesData>> modelYearlySales = salesDataList.stream()
-	            .collect(Collectors.groupingBy(SalesData::getDate));
+	 public void printYTS(String fileName, String modelName) {
+	        List<SalesData> salesDataList = readSalesData(fileName);
 
-	    System.out.println("\n" + modelName + " Yearly Sales Report\n-------------------");
+	        // Group the sales data by year
+	        Map<Integer, Integer> yearlyTotalSales = salesDataList.stream()
+	                .collect(Collectors.groupingBy(salesData -> salesData.getDate().getYear(),
+	                        Collectors.summingInt(SalesData::getSales)));
 
-	    Map<Integer, Integer> yearlyTotalSales = new HashMap<>();
-	    modelYearlySales.forEach((date, salesDataList1) -> {
-	        int totalSales = salesDataList1.stream()
-	                .mapToInt(SalesData::getSales)
-	                .sum();
-	        yearlyTotalSales.put(date.getYear(), totalSales);
-	    });
+	        System.out.println(modelName + " Yearly Sales Report\n-------------------");
 
-	    yearlyTotalSales.forEach((year, totalSales) -> System.out.println(year + " -> " + totalSales));
-	}
+	        // Print the yearly total sales
+	        yearlyTotalSales.forEach((year, totalSales) -> System.out.println(year + " -> " + totalSales));
+	    }
 }

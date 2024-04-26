@@ -1,15 +1,16 @@
 package com.coderscampus;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 
 public class SalesData {
 
 	private LocalDate date;
 	private Integer sales;
 	
-	public SalesData(LocalDate date, Integer sales) {
+	public SalesData(LocalDate yearMonth, Integer sales) {
 		
-		this.date = date;
+		this.date = yearMonth;
 		this.sales = sales;
 	}
 

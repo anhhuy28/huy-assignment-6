@@ -62,14 +62,12 @@ public class FileService {
 	 public void printYTS(String fileName, String modelName) {
 	        List<SalesData> salesDataList = readSalesData(fileName);
 
-	        // Group the sales data by year
 	        Map<Integer, Integer> yearlyTotalSales = salesDataList.stream()
 	                .collect(Collectors.groupingBy(salesData -> salesData.getDate().getYear(),
 	                        Collectors.summingInt(SalesData::getSales)));
 
 	        System.out.println(modelName + " Yearly Sales Report\n-------------------");
 
-	        // Print the yearly total sales
 	        yearlyTotalSales.forEach((year, totalSales) -> System.out.println(year + " -> " + totalSales));
 	    }
 }
